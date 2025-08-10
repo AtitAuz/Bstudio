@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Смотрим стрим Blast Bounty</title>
+  <style>
+    body {
+      background-color: #0f0f1a;
+      color: white;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      background: black;
+    }
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      border-radius: 12px;
+    }
+    .poll-container {
+      margin-top: 30px;
+      background-color: #1c1c2a;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .poll-container h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .poll-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      gap: 10px;
+    }
+    .poll-option input[type="radio"] {
+      cursor: pointer;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+    .team-logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .vote-button {
+      display: block;
+      margin: 20px auto 0;
+      background-color: #58a6ff;
+      border: none;
+      color: white;
+      padding: 10px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .vote-button:hover {
+      background-color: #3b78e7;
+    }
+    .results {
+      margin-top: 20px;
+    }
+    .result-bar {
+      background-color: #333854;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      height: 25px;
+    }
+    .result-fill {
+      background-color: #58a6ff;
+      height: 100%;
+      color: white;
+      text-align: right;
+      padding-right: 10px;
+      line-height: 25px;
+      font-weight: bold;
+      border-radius: 8px 0 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Смотрим стрим Blast Bounty</h1>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/tsZXlenNPHE?autoplay=1"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      title="Blast Bounty Stream"
+    ></iframe>
+  </div>
+
+  <div class="poll-container">
+    <h2>Кто выиграет Матч?</h2>
+    <form id="poll-form">
+      <label class="poll-option">
+        <input type="radio" name="winner" value="Mongolz" required />
+        <img src="images/MongolZ.png" alt="Mongolz" class="team-logo" />
+        Mouz
+      </label>
+      <label class="poll-option">
+        <input type="radio" name="winner" value="Pain" />
+        <img src="images/pain.png" alt="Pain" class="team-logo" />
+        B8
+      </label>
+      <button type="submit" class="vote-button">Голосовать</button>
+    </form>
+
+    <div id="results" class="results" style="display:none;">
+      <div class="result-bar"><div id="result-mongolz" class="result-fill">0%</div></div>
+      <div class="result-bar"><div id="result-pain" class="result-fill">0%</div></div>
+    </div>
+  </div>
+
+  <script>
+    const pollForm = document.getElementById('poll-form');
+    const resultsDiv = document.getElementById('results');
+    const resultMongolz = document.getElementById('result-mongolz');
+    const resultPain = document.getElementById('result-pain');
+
+    // Счётчик голосов
+    let votes = {
+      "Mongolz": 0,
+      "Pain": 0
+    };
+
+    pollForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const selected = pollForm.winner.value;
+      votes[selected]++;
+
+      const totalVotes = votes["Mongolz"] + votes["Pain"];
+      const percentMongolz = Math.round((votes["Mongolz"] / totalVotes) * 100);
+      const percentPain = 100 - percentMongolz;
+
+      resultMongolz.style.width = percentMongolz + '%';
+      resultMongolz.textContent = `Mongolz — ${percentMongolz}%`;
+
+      resultPain.style.width = percentPain + '%';
+      resultPain.textContent = `Pain — ${percentPain}%`;
+
+      pollForm.style.display = 'none';
+      resultsDiv.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

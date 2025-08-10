@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  background-color: #0b0c21;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url('background.jpg') center/cover no-repeat;
+  border-radius: 25px;
+  margin: 20px;
+  padding: 40px;
+}
+
+.banner-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.banner-content span {
+  font-size: 36px;
+  display: block;
+}
+
+.products {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.product-card {
+  background-color: #14162e;
+  border-radius: 15px;
+  width: 180px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 5px 0;
+  }
+
+  .products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 80%;
+  }
+
+  .banner img {
+    width: 100%;
+  }
+}
+
+<style>
+  body {
+    background-color: #0f0f1a;
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Центрируем по вертикали */
+    height: 100vh; /* Занимаем всю высоту окна */
+    padding: 20px;
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1280px; /* Ширина видео */
+    aspect-ratio: 16 / 9; /* Соотношение сторон */
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    background: black; /* чтобы не было белых полос */
+  }
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .back-link {
+    margin-top: 30px;
+    color: #58a6ff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
